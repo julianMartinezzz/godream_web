@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Users, RefreshCw, MessageCircle, Search, CheckCircle2, Circle, Clock } from 'lucide-react';
+import { Users, RefreshCw, MessageCircle, Search, CheckCircle2, LogOut, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
     const [leads, setLeads] = useState([]);
@@ -72,7 +73,7 @@ const Admin = () => {
                         </div>
                     </div>
 
-                    <div className="relative flex items-center gap-4 w-full md:w-auto">
+                    <div className="flex items-center gap-4 w-full md:w-auto">
                         <div className="relative flex-1 md:w-80 group">
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-godream-orange transition-colors w-5 h-5" />
                             <input
@@ -83,9 +84,19 @@ const Admin = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
+
                         <button onClick={fetchLeads} className="p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all active:scale-95 text-slate-600">
                             <RefreshCw className={loading ? 'animate-spin' : ''} />
                         </button>
+
+                        {/* Botón para Salir al Inicio */}
+                        <Link
+                            to="/"
+                            className="flex items-center gap-2 bg-slate-900 text-white px-6 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg active:scale-95"
+                        >
+                            <LogOut className="w-5 h-5" />
+                            <span className="hidden md:inline">Salir</span>
+                        </Link>
                     </div>
                 </div>
 
