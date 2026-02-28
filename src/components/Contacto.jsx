@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { User, Mail, Phone, Wifi, MapPin, Send, CheckCircle } from 'lucide-react';
+import { User, Mail, Phone, Wifi, MapPin, Send, CheckCircle, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Importante para la navegación
 
 const Contacto = ({ planPredefinido }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,7 +30,7 @@ const Contacto = ({ planPredefinido }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true); // Bloqueamos el botón
+        setIsSubmitting(true);
 
         try {
             const response = await fetch('http://localhost:8080/api/leads', {
@@ -41,17 +42,19 @@ const Contacto = ({ planPredefinido }) => {
             if (response.ok) {
                 setSubmitted(true);
                 setFormData({ nombre: '', email: '', telefono: '', plan: '', estrato: '', origen: 'Web Principal', estado: 'NUEVO' });
-                setTimeout(() => setSubmitted(false), 5000); // Reset mensaje éxito
+                setTimeout(() => setSubmitted(false), 5000);
             }
         } catch (error) {
             alert("Error de conexión. Verifica que el Backend esté corriendo.");
         } finally {
-            setIsSubmitting(false); // Desbloqueamos el botón
+            setIsSubmitting(false);
         }
     };
 
     return (
         <div className="bg-slate-900 rounded-[40px] p-8 md:p-16 text-white shadow-2xl relative overflow-hidden border border-white/10">
+
+
             {/* Decoración de fondo */}
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-godream-orange/10 rounded-full blur-3xl"></div>
 
@@ -65,13 +68,11 @@ const Contacto = ({ planPredefinido }) => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
-                        {/* Input Nombre */}
                         <div className="relative group">
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-godream-orange transition-colors" />
                             <input name="nombre" value={formData.nombre} onChange={handleChange} placeholder="Nombre completo"
                                    className="w-full bg-white/5 border border-white/10 p-4 pl-12 rounded-2xl focus:border-godream-orange focus:ring-1 focus:ring-godream-orange outline-none transition-all" required />
                         </div>
-                        {/* Input Email */}
                         <div className="relative group">
                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-godream-orange transition-colors" />
                             <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Correo electrónico"
@@ -80,13 +81,11 @@ const Contacto = ({ planPredefinido }) => {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6">
-                        {/* Input Teléfono */}
                         <div className="relative group">
                             <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-godream-orange transition-colors" />
                             <input name="telefono" value={formData.telefono} onChange={handleChange} placeholder="Celular"
                                    className="w-full bg-white/5 border border-white/10 p-4 pl-12 rounded-2xl focus:border-godream-orange focus:ring-1 focus:ring-godream-orange outline-none transition-all" required />
                         </div>
-                        {/* Select Plan */}
                         <div className="relative group">
                             <Wifi className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-godream-orange transition-colors" />
                             <select name="plan" value={formData.plan} onChange={handleChange}
@@ -96,7 +95,6 @@ const Contacto = ({ planPredefinido }) => {
                                 <option value="Plan Pro - 1 Gbps" className="text-slate-900">1 Gbps</option>
                             </select>
                         </div>
-                        {/* Select Estrato */}
                         <div className="relative group">
                             <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-godream-orange transition-colors" />
                             <select name="estrato" value={formData.estrato} onChange={handleChange}
