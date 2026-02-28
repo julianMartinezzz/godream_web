@@ -21,24 +21,30 @@ const Equipo = () => {
 
             if (resAsesores.ok) {
                 const data = await resAsesores.json();
-                // Solo actualizamos si data es realmente un array
                 setAsesores(Array.isArray(data) ? data : []);
             }
-            setLeads(await resLeads.json());
+            if (resLeads.ok) {
+                setLeads(await resLeads.json());
+            }
         } catch (error) {
             console.error("Error cargando datos:", error);
-            setAsesores([]); // Si hay error, dejamos la lista vacía para que no explote .map()
+            setAsesores([]);
         }
     };
+
     useEffect(() => { fetchData(); }, []);
 
-    // --- CÁLCULO DE ESTADÍSTICAS EN TIEMPO REAL ---
+    // --- CÁLCULO DE ESTADÍSTICAS ACTUALIZADO ---
     const getStats = (asesorId) => {
-        // Si no hay leads o el asesorId es nulo, devolvemos valores en cero
         if (!leads || !asesorId) return { total: 0, ventas: 0 };
 
+        // Todos los leads asignados a este asesor
         const asignados = leads.filter(l => l.asesor?.id === asesorId);
-        const ventas = asignados.filter(l => l.estado === 'APROBADA').length;
+
+        // VENTAS REALES: Ahora filtramos por el estado 'INSTALADA'
+        // que es el que genera dinero en la liquidación
+        const ventas = asignados.filter(l => l.estado === 'INSTALADA').length;
+
         return { total: asignados.length, ventas };
     };
 
@@ -52,7 +58,6 @@ const Equipo = () => {
             });
             if (res.ok) {
                 fetchData();
-                // Limpiamos el formulario
                 setNuevoAsesor({ nombre: '', cargo: '', email: '', telefono: '' });
             }
         } catch (error) {
@@ -87,7 +92,7 @@ const Equipo = () => {
                         </div>
                     </div>
 
-                    {/* Formulario de Registro con nuevos campos */}
+                    {/* Formulario de Registro */}
                     <form onSubmit={agregarAsesor} className="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100 mb-12 flex flex-wrap gap-4 items-end">
                         <div className="flex-1 min-w-[180px]">
                             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2 mb-2 block">Nombre</label>
@@ -129,15 +134,15 @@ const Equipo = () => {
                                         <h3 className="text-xl font-black text-slate-900">{asesor.nombre || "Sin nombre"}</h3>
                                         <p className="text-orange-500 font-bold text-sm mb-6">{asesor.cargo || "Asesor"}</p>
 
-                                        {/* Estadísticas */}
+                                        {/* Estadísticas de Instalaciones */}
                                         <div className="grid grid-cols-2 gap-4 mb-8">
-                                            <div className="bg-slate-50 p-4 rounded-3xl border border-slate-100">
-                                                <div className="flex items-center gap-2 text-slate-400 mb-1"><Users size={14}/> <span className="text-[10px] font-black uppercase">Asignados</span></div>
+                                            <div className="bg-slate-50 p-4 rounded-3xl border border-slate-100 text-center">
+                                                <div className="flex items-center justify-center gap-2 text-slate-400 mb-1"><Users size={14}/> <span className="text-[10px] font-black uppercase">Asignados</span></div>
                                                 <div className="text-2xl font-black text-slate-900">{total}</div>
                                             </div>
-                                            <div className="bg-orange-50 p-4 rounded-3xl border border-orange-100">
-                                                <div className="flex items-center gap-2 text-orange-400 mb-1"><Award size={14}/> <span className="text-[10px] font-black uppercase">Ventas</span></div>
-                                                <div className="text-2xl font-black text-orange-600">{ventas}</div>
+                                            <div className="bg-green-50 p-4 rounded-3xl border border-green-100 text-center">
+                                                <div className="flex items-center justify-center gap-2 text-green-500 mb-1"><Award size={14}/> <span className="text-[10px] font-black uppercase">Instaladas</span></div>
+                                                <div className="text-2xl font-black text-green-600">{ventas}</div>
                                             </div>
                                         </div>
 
