@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom'; // Quitamos 'BrowserRouter as Router'
+import { Routes, Route } from 'react-router-dom';
 
 // Estilos y Animaciones
 import AOS from 'aos';
@@ -24,40 +24,36 @@ function App() {
         AOS.init({ duration: 1000, once: true });
     }, []);
 
-    // Estructura de la Landing Page
-    const WebPublica = () => (
-        <>
-            <Navbar />
-            <main className="max-w-7xl mx-auto px-6 md:px-12">
-                <Hero />
-                <section id="planes" className="py-20">
-                    <Planes alSeleccionarPlan={setPlanSeleccionado} />
-                </section>
-                <Features />
-                <section id="contacto" className="py-12">
-                    <Contacto planPredefinido={planSeleccionado} />
-                </section>
-            </main>
-            <Footer />
-        </>
-    );
-
     return (
         <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-orange-100 overflow-x-hidden">
             <Routes>
-                {/* Ruta Raíz (Landing Page) */}
-                <Route path="/" element={<WebPublica />} />
+                {/* RUTA PRINCIPAL (LANDING PAGE) */}
+                <Route path="/" element={
+                    <>
+                        <Navbar />
+                        <main className="max-w-7xl mx-auto px-6 md:px-12">
+                            <Hero />
+                            <section id="planes" className="py-20">
+                                <Planes alSeleccionarPlan={setPlanSeleccionado} />
+                            </section>
+                            <Features />
+                            <section id="contacto" className="py-12">
+                                <Contacto planPredefinido={planSeleccionado} />
+                            </section>
+                        </main>
+                        <Footer />
+                    </>
+                } />
 
-                {/* Rutas de Administración */}
+                {/* RUTAS DE ADMINISTRACIÓN (PLANAS) */}
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/admin/equipo" element={<Equipo />} />
 
-                {/* Ruta de error 404 */}
+                {/* MANEJO DE ERRORES 404 */}
                 <Route path="*" element={
-                    <div className="flex flex-col items-center justify-center min-h-screen font-black text-slate-900">
-                        <h1 className="text-6xl">404</h1>
-                        <p className="text-xl mb-4">Página no encontrada</p>
-                        <a href="/" className="px-6 py-3 bg-godream-orange text-white rounded-2xl">Volver al Inicio</a>
+                    <div className="flex flex-col items-center justify-center min-h-screen">
+                        <h1 className="text-4xl font-black">404 - No encontrado</h1>
+                        <a href="/" className="text-orange-500 underline mt-4">Volver al inicio</a>
                     </div>
                 } />
             </Routes>
