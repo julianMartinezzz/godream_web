@@ -1,16 +1,28 @@
-# React + Vite
+#  GoDream - Gestión de Fibra Óptica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de gestión para ventas y administración de servicios de internet por fibra óptica. Construido con **React + Vite** y estilizado con **Tailwind CSS**.
 
-Currently, two official plugins are available:
+## 🛠 Tecnologías utilizadas
+- **Frontend:** React.js, Tailwind CSS, Lucide Icons, AOS (Animaciones).
+- **Enrutamiento:** React Router DOM.
+- **Iconografía:** Lucide React.
+- **Estado:** React Hooks (useState, useEffect).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Características principales
+- **Landing Page:** Sección de planes, beneficios y contacto.
+- **Gestión de Leads:** Tabla administrativa con integración directa a WhatsApp.
+- **Liquidación:** Cálculo automático de comisiones para asesores.
+- **Seguridad:** Acceso administrativo protegido por contraseña.
 
-## React Compiler
+##  Instalación y Uso
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/julianMartinezzz/GoDream-WEB.git](https://github.com/julianMartinezzz/GoDream-WEB.git)
+   
+## Instalacion dependencias
 
-## Expanding the ESLint configuration
+- npm install
+## Ejecutar en modo desarrollo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- nmp run dev
