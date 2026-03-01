@@ -2,7 +2,7 @@
 
 Sistema de gestión para ventas y administración de servicios de internet por fibra óptica. Construido con **React + Vite** y estilizado con **Tailwind CSS**.
 
-## 🛠 Tecnologías utilizadas
+##  Tecnologías utilizadas
 - **Frontend:** React.js, Tailwind CSS, Lucide Icons, AOS (Animaciones).
 - **Enrutamiento:** React Router DOM.
 - **Iconografía:** Lucide React.
