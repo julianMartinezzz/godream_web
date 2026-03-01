@@ -11,12 +11,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                        "http://localhost:5173",
-                        "https://godreamwebprototipo.vercel.app" // Tu URL real de producción
+                        "http://localhost:5173",           // Para cuando pruebas en tu PC
+                        "https://godreamwebprototipo.vercel.app" // Tu web real en internet
                 )
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(true)
-                .maxAge(3600);
+                .allowCredentials(true);
     }
 }
