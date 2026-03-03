@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registrarLead } from '../main/java/com/godream/api/services/api';
+import { sendLead } from '../services/api';
 
 export default function LandingPage() {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function LandingPage() {
         e.preventDefault();
         setEnviando(true);
         try {
-            await registrarLead(formData);
+            await sendLead(formData);
             alert("¡Gracias! Un asesor de GoDream te contactará pronto.");
             setFormData({ nombre: '', email: '', telefono: '', plan: '1 Gbps' }); // Limpiar
         } catch (error) {
@@ -54,9 +54,9 @@ export default function LandingPage() {
             {/* HERO & FORMULARIO */}
             <section className="max-w-7xl mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="space-y-8">
-          <span className="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest">
-            ¿Por qué GoDream?
-          </span>
+                    <span className="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest">
+                        ¿Por qué GoDream?
+                    </span>
                     <h1 className="text-7xl font-black text-slate-900 leading-[1.1]">
                         La mejor <br /> experiencia en <br />
                         <span className="text-orange-600">conectividad</span>

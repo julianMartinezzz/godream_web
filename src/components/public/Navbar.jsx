@@ -10,13 +10,13 @@ const Navbar = () => {
 
     const handleAdminAccess = (e) => {
         e.preventDefault();
-        // Validación con tu nueva clave
-        if (password === 'Jmm1205*') {
+        // TODO: Migrar a autenticación por Backend Real
+        if (password.length >= 6) {
             setShowLogin(false);
             setPassword('');
             navigate('/admin');
         } else {
-            alert('Clave de administrador incorrecta');
+            alert('La contraseña debe tener al menos 6 caracteres');
             setPassword('');
         }
     };

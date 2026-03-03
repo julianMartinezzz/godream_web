@@ -11,9 +11,9 @@ public class GoDreamApplication {
         SpringApplication.run(GoDreamApplication.class, args);
 
         System.out.println("=======================================");
-        System.out.println("🚀 GoDream Backend iniciado con éxito");
-        System.out.println("📍 API: http://localhost:8080/api/leads");
-        System.out.println("📊 H2 Console: http://localhost:8080/h2-console");
+        System.out.println("GoDream Backend iniciado con éxito");
+        System.out.println("API: http://localhost:8080/api/leads");
+        System.out.println("H2 Console: http://localhost:8080/h2-console");
         System.out.println("=======================================");
     }
 

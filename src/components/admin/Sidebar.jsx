@@ -4,13 +4,8 @@ import {
     LayoutDashboard,
     Users,
     User,
-    ClipboardList,
-    Settings,
     LogOut,
-    MessageSquare,
-    Wallet,
-    Calendar,
-    FileSpreadsheet
+    Wallet
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -48,11 +43,10 @@ const Sidebar = () => {
                         <Link
                             key={item.path}
                             to={item.path}
-                            className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 font-bold ${
-                                isActive
+                            className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 font-bold ${isActive
                                     ? 'bg-orange-500 text-white shadow-lg shadow-orange-900/20'
                                     : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                            }`}
+                                }`}
                         >
                             <Icon size={20} />
                             <span>{item.label}</span>

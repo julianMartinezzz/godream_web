@@ -18,6 +18,8 @@ import Admin from './pages/Admin.jsx';
 import Equipo from './components/admin/Equipo.jsx';
 import Liquidacion from './components/admin/Liquidacion.jsx';
 import GestionLeads from './components/admin/GestionLeads.jsx'; // <--- CORREGIDO
+import Login from './pages/Login.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 function App() {
     const [planSeleccionado, setPlanSeleccionado] = useState("");
@@ -54,6 +56,10 @@ function App() {
 
                 {/* ESTA ES LA RUTA QUE FALTABA */}
                 <Route path="/admin/leads" element={<GestionLeads />} />
+
+                {/* NUEVAS RUTAS AÑADIDAS PARA CORREGIR 404 */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={<Dashboard />} />
 
                 {/* MANEJO DE ERRORES 404 */}
                 <Route path="*" element={
